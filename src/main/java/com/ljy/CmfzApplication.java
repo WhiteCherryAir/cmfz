@@ -12,9 +12,6 @@ public class CmfzApplication {
         SpringApplication.run(CmfzApplication.class, args);
         System.out.println();
         System.out.println("test222");
-        System.out.println();
-        System.out.println();
-
     }
 
 }
