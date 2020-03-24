@@ -1,0 +1,49 @@
+server:
+  port: 8989
+  servlet:
+    #context-path: /cmfz
+    jsp:
+      init-parameters:
+        development: true
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  http:
+    encoding:
+      charset: utf-8
+      force: true #强制使用utf-8
+      force-request: true #强制请求使用utf-8
+      force-response: true #强制响应使用utf-8
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/cmfz?useUnicode=true&characterEncoding=UTF-8
+  redis:
+    host: 192.168.188.14
+    port: 6379
+    database: 0
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  profiles:
+    active: cmfztest
+mybatis:
+  type-aliases-package: com.ljy.entity
+  mapper-locations: classpath:com/ljy/mapper/*.xml
+logging:
+  level:
+    root: info
+    com.baizhi.ljy.dao: debug
+    com.baizhi.ljy.service: debug
+    com.baizhi.ljy.controller: debug
+  file: cmfz.log

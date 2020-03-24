@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljy.dao.AdminDao">
+
+    <resultMap type="com.ljy.entity.Admin" id="AdminMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <collection property="roles" ofType="Role">
+            <id property="id" column="id2"></id>
+            <result property="roleName" column="role_name"></result>
+            <collection property="resources" ofType="Resource">
+                <id property="id" column="id4"></id>
+                <result property="resourceName" column="resource_name"></result>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="queryAdminInfo" resultMap="AdminMap">
+        select * from admin a LEFT JOIN admin_role b on a.id = b.admin_id
+                              LEFT JOIN role c on b.role_id = c.id
+                              LEFT JOIN role_resource d on c.id = d.role_id
+                              LEFT JOIN resource e on d.resource_id = e.id
+        where username = #{username}
+    </select>
+</mapper>

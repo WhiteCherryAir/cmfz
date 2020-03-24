@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljy.dao.CourseDao">
+
+    <resultMap type="com.ljy.entity.Course" id="CourseMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+<select id="queryCourseByUserId" resultMap="CourseMap" parameterType="String">
+    select * from course c left join user u  on c.user_id= u.id where u.id = #{id}
+</select>
+
+    <select id="queryCourseById" resultType="com.ljy.entity.Course" parameterType="String">
+        select * from course where id = #{id}
+    </select>
+
+   <!-- &lt;!&ndash;查询单个&ndash;&gt;
+    <select id="queryById" resultMap="CourseMap">
+        select
+          id, title, user_id, type, create_date
+        from cmfz.course
+        where id = #{id}
+    </select>
+
+    &lt;!&ndash;查询指定行数据&ndash;&gt;
+    <select id="queryAllByLimit" resultMap="CourseMap">
+        select
+          id, title, user_id, type, create_date
+        from cmfz.course
+        limit #{offset}, #{limit}
+    </select>
+
+    &lt;!&ndash;通过实体作为筛选条件查询&ndash;&gt;
+    <select id="queryAll" resultMap="CourseMap">
+        select
+          id, title, user_id, type, create_date
+        from cmfz.course
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="createDate != null">
+                and create_date = #{createDate}
+            </if>
+        </where>
+    </select>
+
+    &lt;!&ndash;新增所有列&ndash;&gt;
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into cmfz.course(title, user_id, type, create_date)
+        values (#{title}, #{userId}, #{type}, #{createDate})
+    </insert>
+
+    &lt;!&ndash;通过主键修改数据&ndash;&gt;
+    <update id="update">
+        update cmfz.course
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    &lt;!&ndash;通过主键删除&ndash;&gt;
+    <delete id="deleteById">
+        delete from cmfz.course where id = #{id}
+    </delete>
+-->
+</mapper>
