@@ -10,7 +10,7 @@ public class CmfzApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CmfzApplication.class, args);
-        System.out.println("git提交测试用");
+        System.out.println();
     }
 
 }
