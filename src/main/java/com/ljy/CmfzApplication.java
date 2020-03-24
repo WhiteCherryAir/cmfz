@@ -11,8 +11,6 @@ public class CmfzApplication {
     public static void main(String[] args) {
         SpringApplication.run(CmfzApplication.class, args);
         System.out.println();
-        System.out.println("222");
-        System.out.println();
     }
 
 }
